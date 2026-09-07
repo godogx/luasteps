@@ -93,11 +93,11 @@ func (s *Steps) run(ctx context.Context, src string) (context.Context, error) {
 	return ctx, nil
 }
 
-// registerVarsModule exposes get/set/has/delete/all functions of v as a global "vars" table in L.
-func registerVarsModule(L *lua.LState, v *shared.Vars) {
-	mod := L.NewTable()
+// registerVarsModule exposes get/set/has/delete/all functions of v as a global "vars" table in l.
+func registerVarsModule(l *lua.LState, v *shared.Vars) {
+	mod := l.NewTable()
 
-	L.SetFuncs(mod, map[string]lua.LGFunction{
+	l.SetFuncs(mod, map[string]lua.LGFunction{
 		"get": func(L *lua.LState) int {
 			val, found := v.Get(L.CheckString(1))
 			L.Push(toLua(L, val))
@@ -133,15 +133,15 @@ func registerVarsModule(L *lua.LState, v *shared.Vars) {
 		},
 	})
 
-	L.SetGlobal("vars", mod)
+	l.SetGlobal("vars", mod)
 }
 
 // registerGodogModule exposes a global "godog" table with an attach(name, body, mediaType) function.
 // Recorded attachments are appended to attachments, for the caller to hand to godog.Attach.
-func registerGodogModule(L *lua.LState, attachments *[]godog.Attachment) {
-	mod := L.NewTable()
+func registerGodogModule(l *lua.LState, attachments *[]godog.Attachment) {
+	mod := l.NewTable()
 
-	L.SetFuncs(mod, map[string]lua.LGFunction{
+	l.SetFuncs(mod, map[string]lua.LGFunction{
 		"attach": func(L *lua.LState) int {
 			name := L.CheckString(1)
 			val := L.CheckAny(2)
@@ -178,5 +178,5 @@ func registerGodogModule(L *lua.LState, attachments *[]godog.Attachment) {
 		},
 	})
 
-	L.SetGlobal("godog", mod)
+	l.SetGlobal("godog", mod)
 }

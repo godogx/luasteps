@@ -5,16 +5,12 @@ run:
 linters:
   default: all
   disable:
-    - err113
-    - contextcheck
-    - perfsprint
-    - modernize
     - embeddedstructfieldcheck
+    - nilnil
     - noinlineerr
     - wsl_v5
     - funcorder
     - copyloopvar
-    - gosec
     - depguard
     - dupword
     - errname
@@ -26,7 +22,6 @@ linters:
     - ireturn
     - lll
     - mnd
-    - nilnil
     - nonamedreturns
     - paralleltest
     - recvcheck
@@ -37,12 +32,6 @@ linters:
     - varnamelen
     - wrapcheck
   settings:
-    funlen:
-      lines: 70
-    gocognit:
-      min-complexity: 35
-    cyclop:
-      max-complexity: 20
     dupl:
       threshold: 100
     errcheck:
@@ -58,14 +47,12 @@ linters:
     generated: lax
     rules:
       - linters:
+          - gosec
           - dupl
-          - err113
           - funlen
           - goconst
           - mnd
           - noctx
-          - nosnakecase
-          - structcheck
           - unparam
           - unused
         path: _test.go

@@ -1,4 +1,4 @@
-package luasteps
+package luasteps //nolint:testpackage // whitebox tests exercise unexported run/runScriptFromFile
 
 import (
 	"context"

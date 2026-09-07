@@ -1,4 +1,4 @@
-package luasteps
+package luasteps //nolint:testpackage // whitebox tests exercise unexported toLua/fromLua/fromLuaTable
 
 import (
 	"reflect"

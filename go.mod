@@ -3,6 +3,7 @@ module github.com/godogx/luasteps
 go 1.25.0
 
 require (
+	github.com/bool64/dev v0.2.45
 	github.com/bool64/shared v0.1.7
 	github.com/cucumber/godog v0.15.1
 	github.com/godogx/vars v0.1.12
